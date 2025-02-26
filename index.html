@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <div class="profile">
+                <div class="avatar">
+                    <img src="https://i.pinimg.com/474x/16/1f/c6/161fc6a726e64996fbde013ced2fde6c.jpg" alt="Profile">
+                </div>
+                <div class="profile-info">
+                    <h3>7D SANJE3V</h3>
+                    <span class="rank">ACE MASTER</span>
+                </div>
+            </div>
+            <nav>
+                <a href="#" class="active">
+                    <i data-lucide="layout-dashboard"></i>
+                    Dashboard
+                </a>
+                <a href="#">
+                    <i data-lucide="sword"></i>
+                    Matches
+                </a>
+                <a href="#">
+                    <i data-lucide="trophy"></i>
+                    Tournaments
+                </a>
+                <a href="#">
+                    <i data-lucide="users"></i>
+                    Team
+                </a>
+                <a href="#">
+                    <i data-lucide="settings"></i>
+                    Settings
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header>
+                <div class="search-bar">
+                    <i data-lucide="search"></i>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="header-actions">
+                    <button class="notification-btn">
+                        <i data-lucide="bell"></i>
+                        <span class="badge">3</span>
+                    </button>
+                    <button class="theme-toggle">
+                        <i data-lucide="moon"></i>
+                    </button>
+                </div>
+            </header>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(99, 102, 241, 0.1)">
+                        <i data-lucide="swords" style="color: #6366f1"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h4>Total Matches</h4>
+                        <span class="stat-value">1,284</span>
+                        <span class="trend positive">+12.5%</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(34, 197, 94, 0.1)">
+                        <i data-lucide="target" style="color: #22c55e"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h4>Win Rate</h4>
+                        <span class="stat-value">68%</span>
+                        <span class="trend positive">+5.2%</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(239, 68, 68, 0.1)">
+                        <i data-lucide="crosshair" style="color: #ef4444"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h4>K/D Ratio</h4>
+                        <span class="stat-value">4.92</span>
+                        <span class="trend positive">+3.8%</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(234, 179, 8, 0.1)">
+                        <i data-lucide="clock" style="color: #eab308"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h4>Play Time</h4>
+                        <span class="stat-value">256h</span>
+                        <span class="trend positive">+8.3%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-grid">
+                <div class="match-history">
+                    <div class="card-header">
+                        <h3>Recent Matches</h3>
+                        <button class="view-all">View All</button>
+                    </div>
+                    <div class="matches-list">
+                        <!-- Matches will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="performance-card">
+                    <div class="card-header">
+                        <h3>Performance</h3>
+                        <select id="timeRange">
+                            <option value="week">This Week</option>
+                            <option value="month">This Month</option>
+                            <option value="year">This Year</option>
+                        </select>
+                    </div>
+                    <div class="performance-stats">
+                        <div class="stat-bar">
+                            <div class="stat-label">
+                                <i data-lucide="crosshair"></i>
+                                <span>Accuracy</span>
+                                <span class="value">68%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 68%; background: linear-gradient(to right, #22c55e, #16a34a)"></div>
+                            </div>
+                        </div>
+                        <div class="stat-bar">
+                            <div class="stat-label">
+                                <i data-lucide="trophy"></i>
+                                <span>Win Rate</span>
+                                <span class="value">42%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 42%; background: linear-gradient(to right, #6366f1, #4f46e5)"></div>
+                            </div>
+                        </div>
+                        <div class="stat-bar">
+                            <div class="stat-label">
+                                <i data-lucide="target"></i>
+                                <span>Headshot %</span>
+                                <span class="value">35%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 35%; background: linear-gradient(to right, #ef4444, #dc2626)"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
