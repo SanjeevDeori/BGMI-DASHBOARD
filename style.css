@@ -363,6 +363,41 @@ select {
     transition: width var(--transition-speed);
 }
 
+/* New BGMI Profile Button */
+.add-bgmi-profile-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.2rem;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
+    transition: background 0.2s, transform 0.2s;
+    height: 40px;
+}
+
+.add-bgmi-profile-btn.header {
+    margin: 0;
+    width: auto;
+    min-width: 0;
+}
+
+.add-bgmi-profile-btn i {
+    width: 22px;
+    height: 22px;
+}
+
+.add-bgmi-profile-btn:hover {
+    background: linear-gradient(90deg, #4f46e5, #6366f1);
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.12);
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .content-grid {

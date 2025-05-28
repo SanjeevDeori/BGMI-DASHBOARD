@@ -50,6 +50,10 @@
                     <input type="text" placeholder="Search...">
                 </div>
                 <div class="header-actions">
+                    <button id="add-bgmi-profile-btn" class="add-bgmi-profile-btn header">
+                        <i data-lucide="plus-circle"></i>
+                        Add your BGMI Profile
+                    </button>
                     <button class="notification-btn">
                         <i data-lucide="bell"></i>
                         <span class="badge">3</span>
@@ -160,5 +164,10 @@
         </main>
     </div>
     <script src="script.js"></script>
+    <script>
+        document.getElementById('add-bgmi-profile-btn').addEventListener('click', function() {
+            window.location.href = '/profile-form.html';
+        });
+    </script>
 </body>
 </html>
