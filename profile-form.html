@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BGMI PRO DASHBOARD | Combat Statistics</title>
+  <link rel="stylesheet" href="profile-form.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+      <div class="player-card">
+        <div class="avatar">7D</div>
+        <h2 class="player-name">SANJESV</h2>
+        <div class="player-tier">ACE MASTER</div>
+      </div>
+      
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search...">
+      </div>
+      
+      <nav class="menu">
+        <a href="#" class="active"><i class="fas fa-chart-line"></i> Dashboard</a>
+        <a href="#"><i class="fas fa-gamepad"></i> Matches</a>
+        <a href="#"><i class="fas fa-trophy"></i> Tournaments</a>
+        <a href="#"><i class="fas fa-users"></i> Team</a>
+        <a href="#"><i class="fas fa-cog"></i> Settings</a>
+      </nav>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="stats-grid">
+        <!-- Stats Cards -->
+        <div class="stat-card">
+          <div class="stat-header">
+            <h3>Total Matches</h3>
+            <i class="fas fa-battle-net"></i>
+          </div>
+          <div class="stat-value" id="totalMatchesDisplay">0</div>
+          <div class="stat-change positive"><i class="fas fa-arrow-up"></i> <span id="matchesChange">0%</span></div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-header">
+            <h3>Win Matches</h3>
+            <i class="fas fa-trophy"></i>
+          </div>
+          <div class="stat-value" id="winMatchesDisplay">0</div>
+          <div class="stat-change positive"><i class="fas fa-arrow-up"></i> <span id="winRateChange">0%</span></div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-header">
+            <h3>K/D Ratio</h3>
+            <i class="fas fa-skull"></i>
+          </div>
+          <div class="stat-value" id="kdRatioDisplay">0.00</div>
+          <div class="stat-change positive"><i class="fas fa-arrow-up"></i> <span id="kdChange">0%</span></div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-header">
+            <h3>Play Time</h3>
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="stat-value" id="playTimeDisplay">0h</div>
+          <div class="stat-change positive"><i class="fas fa-arrow-up"></i> <span id="playTimeChange">0%</span></div>
+        </div>
+      </div>
+      
+      <!-- Form Section -->
+      <div class="form-section">
+        <h2 class="section-title">UPDATE YOUR STATS</h2>
+        <form id="bgmiForm">
+          <div class="form-row">
+            <div class="input-group">
+              <label for="uid"><i class="fas fa-id-card"></i> UID</label>
+              <input type="text" id="uid" placeholder="Enter your UID" required />
+            </div>
+            
+            <div class="input-group">
+              <label for="username"><i class="fas fa-user-ninja"></i> IGN</label>
+              <input type="text" id="username" placeholder="In-game name" required />
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="input-group">
+              <label for="totalMatches"><i class="fas fa-battle-net"></i> Total Matches</label>
+              <input type="number" id="totalMatches" placeholder="0" required />
+            </div>
+            
+            <div class="input-group">
+              <label for="winMatches"><i class="fas fa-trophy"></i> Win Matches</label>
+              <input type="number" id="winMatches" placeholder="0" required />
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="input-group">
+              <label for="kdRatio"><i class="fas fa-skull"></i> K/D Ratio</label>
+              <input type="number" id="kdRatio" placeholder="0.00" step="0.01" required />
+            </div>
+            
+            <div class="input-group">
+              <label for="playTime"><i class="fas fa-clock"></i> Play Time (hrs)</label>
+              <input type="number" id="playTime" placeholder="0" required />
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="input-group">
+              <label for="headshotPercent"><i class="fas fa-crosshairs"></i> Headshot %</label>
+              <input type="number" id="headshotPercent" placeholder="0%" min="0" max="100" />
+            </div>
+            
+            <div class="input-group">
+              <label for="accuracy"><i class="fas fa-bullseye"></i> Accuracy %</label>
+              <input type="number" id="accuracy" placeholder="0%" min="0" max="100" />
+            </div>
+          </div>
+          
+          <button type="submit" class="submit-btn">
+            <span class="btn-text">UPDATE COMBAT DATA</span>
+            <i class="fas fa-paper-plane btn-icon"></i>
+          </button>
+        </form>
+      </div>
+      
+      <!-- Analytics Section -->
+      <div class="analytics-section">
+        <div class="analytics-card">
+          <h3 class="card-title">PREDICTIVE ANALYSIS</h3>
+          <div class="prediction-grid">
+            <div class="prediction-item">
+              <div class="prediction-label">Predicted Tier</div>
+              <div class="prediction-value" id="predictedTier">-</div>
+            </div>
+            <div class="prediction-item">
+              <div class="prediction-label">Win Probability</div>
+              <div class="prediction-value" id="winProbability">-</div>
+            </div>
+            <div class="prediction-item">
+              <div class="prediction-label">Headshot Accuracy</div>
+              <div class="prediction-value" id="headshotAccuracy">-</div>
+            </div>
+            <div class="prediction-item">
+              <div class="prediction-label">Combat Rating</div>
+              <div class="prediction-value" id="combatRating">-</div>
+            </div>
+          </div>
+          
+          <div class="tier-progress-container">
+            <div class="tier-labels">
+              <span>Bronze</span>
+              <span>Silver</span>
+              <span>Gold</span>
+              <span>Platinum</span>
+              <span>Diamond</span>
+              <span>Crown</span>
+              <span>Ace</span>
+              <span>Ace Master</span>
+              <span>Ace Dominator</span>
+            </div>
+            <div class="tier-bar">
+              <div class="tier-progress" id="tierProgress"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="recent-matches">
+          <h3 class="card-title">RECENT MATCHES</h3>
+          <div class="matches-list">
+            <div class="match-item victory">
+              <div class="match-result"><i class="fas fa-crown"></i> Victory</div>
+              <div class="match-map">Erangel</div>
+              <div class="match-time">32min ago</div>
+            </div>
+            <div class="match-item defeat">
+              <div class="match-result"><i class="fas fa-skull"></i> Defeat</div>
+              <div class="match-map">Miramar</div>
+              <div class="match-time">28min ago</div>
+            </div>
+            <div class="match-item victory">
+              <div class="match-result"><i class="fas fa-crown"></i> Victory</div>
+              <div class="match-map">Sanhok</div>
+              <div class="match-time">25min ago</div>
+            </div>
+          </div>
+          <button class="view-all-btn">VIEW ALL MATCHES <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+      
+      <!-- Performance Metrics -->
+      <div class="performance-section">
+        <h3 class="section-title">PERFORMANCE METRICS</h3>
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-header">
+              <i class="fas fa-crosshairs"></i>
+              <h4>Accuracy</h4>
+            </div>
+            <div class="metric-value" id="accuracyDisplay">0%</div>
+            <div class="metric-graph">
+              <div class="graph-bar" id="accuracyBar"></div>
+            </div>
+            <div class="metric-timeframe">
+              <span class="active">This Week</span>
+              <span>This Month</span>
+              <span>All Time</span>
+            </div>
+          </div>
+          
+          <div class="metric-card">
+            <div class="metric-header">
+              <i class="fas fa-trophy"></i>
+              <h4>Win Rate</h4>
+            </div>
+            <div class="metric-value" id="winRateDisplay">0%</div>
+            <div class="metric-graph">
+              <div class="graph-bar" id="winRateBar"></div>
+            </div>
+            <div class="metric-timeframe">
+              <span class="active">This Week</span>
+              <span>This Month</span>
+              <span>All Time</span>
+            </div>
+          </div>
+          
+          <div class="metric-card">
+            <div class="metric-header">
+              <i class="fas fa-bullseye"></i>
+              <h4>Headshot %</h4>
+            </div>
+            <div class="metric-value" id="headshotDisplay">0%</div>
+            <div class="metric-graph">
+              <div class="graph-bar" id="headshotBar"></div>
+            </div>
+            <div class="metric-timeframe">
+              <span class="active">This Week</span>
+              <span>This Month</span>
+              <span>All Time</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toastify JS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <!-- Confetti JS -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <!-- GSAP for animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+
+  <script>
+    // Tier prediction based on stats
+    function calculatePredictions() {
+      const totalMatches = parseInt(document.getElementById('totalMatches').value) || 0;
+      const winMatches = parseInt(document.getElementById('winMatches').value) || 0;
+      const kd = parseFloat(document.getElementById('kdRatio').value) || 0;
+      const playTime = parseInt(document.getElementById('playTime').value) || 0;
+      const headshotPercent = parseInt(document.getElementById('headshotPercent').value) || 0;
+      const accuracy = parseInt(document.getElementById('accuracy').value) || 0;
+      
+      // Calculate win rate
+      const winRate = totalMatches > 0 ? (winMatches / totalMatches * 100).toFixed(1) : 0;
+      document.getElementById('winRateDisplay').textContent = `${winRate}%`;
+      document.getElementById('winRateBar').style.width = `${winRate}%`;
+      
+      // Update displayed values
+      document.getElementById('totalMatchesDisplay').textContent = totalMatches.toLocaleString();
+      document.getElementById('winMatchesDisplay').textContent = winMatches.toLocaleString();
+      document.getElementById('kdRatioDisplay').textContent = kd.toFixed(2);
+      document.getElementById('playTimeDisplay').textContent = `${playTime}h`;
+      document.getElementById('accuracyDisplay').textContent = `${accuracy}%`;
+      document.getElementById('headshotDisplay').textContent = `${headshotPercent}%`;
+      document.getElementById('accuracyBar').style.width = `${accuracy}%`;
+      document.getElementById('headshotBar').style.width = `${headshotPercent}%`;
+      
+      // Calculate performance changes (random for demo)
+      document.getElementById('matchesChange').textContent = `${(Math.random() * 15).toFixed(1)}%`;
+      document.getElementById('winRateChange').textContent = `${(Math.random() * 10).toFixed(1)}%`;
+      document.getElementById('kdChange').textContent = `${(Math.random() * 8).toFixed(1)}%`;
+      document.getElementById('playTimeChange').textContent = `${(Math.random() * 12).toFixed(1)}%`;
+      
+      // Tier prediction algorithm
+      let tierScore = (kd * 0.4) + (winRate * 0.3) + 
+                    (Math.min(playTime, 500)/500 * 0.1) + 
+                    (headshotPercent/100 * 0.1) + 
+                    (accuracy/100 * 0.1);
+      tierScore = Math.min(Math.max(tierScore, 0), 1);
+      
+      const tiers = [
+        "Bronze", "Silver", "Gold", "Platinum", 
+        "Diamond", "Crown", "Ace", "Ace Master", "Ace Dominator"
+      ];
+      
+      const tierIndex = Math.min(Math.floor(tierScore * tiers.length), tiers.length - 1);
+      const progressPercent = (tierScore * 100) % (100 / tiers.length) * tiers.length;
+      
+      document.getElementById('predictedTier').textContent = tiers[tierIndex];
+      document.getElementById('tierProgress').style.width = `${progressPercent}%`;
+      
+      // Update tier progress color based on level
+      const colors = [
+        "#cd7f32", "#c0c0c0", "#ffd700", "#00b4d8", 
+        "#b9f2ff", "#ff9ff3", "#feca57", "#ff6b6b", "#ee5253"
+      ];
+      document.getElementById('tierProgress').style.backgroundColor = colors[tierIndex];
+      
+      // Calculate other predictions
+      const winProbability = 30 + (winRate * 0.5) + (kd * 5);
+      document.getElementById('winProbability').textContent = `${Math.min(Math.round(winProbability), 95)}%`;
+      
+      const combatRating = 100 + (kd * 20) + (winRate * 2) + (headshotPercent * 0.5) + (accuracy * 0.5);
+      document.getElementById('combatRating').textContent = Math.round(combatRating);
+      
+      document.getElementById('headshotAccuracy').textContent = `${headshotPercent}%`;
+    }
+    
+    // Add event listeners for live calculations
+    document.getElementById('totalMatches').addEventListener('input', calculatePredictions);
+    document.getElementById('winMatches').addEventListener('input', calculatePredictions);
+    document.getElementById('kdRatio').addEventListener('input', calculatePredictions);
+    document.getElementById('playTime').addEventListener('input', calculatePredictions);
+    document.getElementById('headshotPercent').addEventListener('input', calculatePredictions);
+    document.getElementById('accuracy').addEventListener('input', calculatePredictions);
+    
+    // Form submission
+    document.getElementById("bgmiForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      
+      const confirmSubmit = confirm("Confirm stats update?");
+      if (confirmSubmit) {
+        // Show Toast
+        Toastify({
+          text: "COMBAT DATA UPDATED! 🎯",
+          duration: 4000,
+          close: true,
+          gravity: "top",
+          position: "right",
+          backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+          className: "toast-message"
+        }).showToast();
+
+        // Confetti explosion
+        confetti({
+          particleCount: 150,
+          spread: 90,
+          origin: { y: 0.6 },
+          colors: ['#ff0000', '#00ff00', '#0000ff', '#ffff00']
+        });
+        
+        // Animation effects
+        gsap.to(".form-section", {
+          y: -10,
+          duration: 0.3,
+          yoyo: true,
+          repeat: 1,
+          ease: "power1.inOut"
+        });
+        
+        // Calculate all predictions
+        calculatePredictions();
+      }
+    });
+    
+    // Initialize with default values
+    calculatePredictions();
+  </script>
+</body>
+</html>
